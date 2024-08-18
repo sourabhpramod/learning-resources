@@ -126,6 +126,69 @@ SJMP CHECK
 END
 ```
 
+
+Timer 0 in the 8051 microcontroller can operate in four different modes: Mode 0, Mode 1, Mode 2, and Mode 3. Each mode configures the timer to behave differently based on the application requirements. Here is a detailed explanation of each mode:
+
+### 1. **Mode 0 (13-bit Timer/Counter)**
+   - **Operation**: In Mode 0, Timer 0 functions as a 13-bit timer/counter. The lower 5 bits of `TL0` (Timer Low Byte) and all 8 bits of `TH0` (Timer High Byte) are used.
+   - **Configuration**:
+     - **TMOD Register**: `M1 = 0`, `M0 = 0` for Timer 0.
+   - **Counting Range**: The timer can count from `0000H` to `1FFFH` (13-bit).
+   - **Use Case**: This mode is rarely used because of the limited 13-bit range.
+   - **Example**:
+     ```
+     TH0 (8 bits) | TL0 (5 bits) | Overflow
+        XXH         XXXXX         -> TF0 Set (Overflow)
+     ```
+
+### 2. **Mode 1 (16-bit Timer/Counter)**
+   - **Operation**: In Mode 1, Timer 0 functions as a 16-bit timer/counter. Both `TL0` and `TH0` are used as a combined 16-bit register.
+   - **Configuration**:
+     - **TMOD Register**: `M1 = 0`, `M0 = 1` for Timer 0.
+   - **Counting Range**: The timer can count from `0000H` to `FFFFH` (65536 counts).
+   - **Use Case**: This mode is commonly used for generating longer time delays and event counting.
+   - **Example**:
+     ```
+     TH0 (8 bits) | TL0 (8 bits) | Overflow
+        XXH         XXH          -> TF0 Set (Overflow)
+     ```
+
+### 3. **Mode 2 (8-bit Auto-Reload Timer/Counter)**
+   - **Operation**: In Mode 2, Timer 0 functions as an 8-bit timer with auto-reload. The `TH0` register is loaded with a value, which is then copied into `TL0` every time it overflows. This allows the timer to automatically reload a value after every overflow.
+   - **Configuration**:
+     - **TMOD Register**: `M1 = 1`, `M0 = 0` for Timer 0.
+   - **Counting Range**: The timer counts from the value in `TL0` (8 bits) up to `FFH` (256 counts). After `FFH`, `TL0` is reloaded with the value from `TH0`.
+   - **Use Case**: This mode is useful for generating periodic interrupts, square waves, or baud rate generation in serial communication.
+   - **Example**:
+     ```
+     TH0 = Reload Value -> TL0 counts from TH0 to FFH -> Overflow -> Reload from TH0
+     ```
+
+### 4. **Mode 3 (Split Timer Mode)**
+   - **Operation**: In Mode 3, Timer 0 is split into two independent 8-bit timers: `TL0` and `TH0`. `TL0` operates as an 8-bit timer, while `TH0` is treated as a separate 8-bit timer. Timer 1 can still function in Modes 0, 1, or 2.
+   - **Configuration**:
+     - **TMOD Register**: `M1 = 1`, `M0 = 1` for Timer 0.
+   - **Counting Range**: Each 8-bit timer counts independently from `00H` to `FFH`.
+   - **Use Case**: Mode 3 is used when two separate 8-bit timers are needed. For example, `TL0` can be used for generating baud rates, while `TH0` can be used for generating time delays.
+   - **Example**:
+     ```
+     TL0: Independent 8-bit Timer | TH0: Independent 8-bit Timer
+     ```
+
+### Summary of Timer 0 Modes
+
+| Mode | Operation Description                     | TMOD Configuration (M1, M0) | Counting Range | Use Case                                         |
+|------|-------------------------------------------|-----------------------------|----------------|------------------------------------------------|
+| 0    | 13-bit Timer/Counter                       | (0, 0)                      | 0000H to 1FFFH | Limited range applications, rarely used         |
+| 1    | 16-bit Timer/Counter                       | (0, 1)                      | 0000H to FFFFH | Common for longer delays and event counting     |
+| 2    | 8-bit Auto-Reload Timer/Counter            | (1, 0)                      | 00H to FFH     | Periodic interrupts, baud rate generation       |
+| 3    | Split Timer Mode (Two Independent 8-bit)   | (1, 1)                      | 00H to FFH     | Applications requiring two separate 8-bit timers|
+
+These modes provide flexibility for various applications, from simple time delays to complex pulse generation and event counting.
+
+
+
+
 ### Applications
 
 - **Delay Generation**: Timers can be used to create precise time delays for tasks.
