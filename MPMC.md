@@ -257,7 +257,7 @@ Serial communication in the 8051 microcontroller is an essential feature for tra
 ### Mode Details
 
 1. **Mode 0 (Synchronous 8-bit Shift Register)**:
-   - Data is transmitted and received through the TxD pin.
+   - Data is transmitted and received through the RxD pin.
    - The clock signal is provided on the TxD pin.
    - Baud rate is fixed at Fosc/12.
 
