@@ -136,3 +136,45 @@ Here’s how you can use a `HashSet` in Java:
    boolean isEmpty = set.isEmpty();
    System.out.println(isEmpty); // Output: true
    ```
+## bitwise operators 
+
+Bitwise operators in Java are used to perform operations on the binary representations of integers. Here's a quick overview:
+
+1. **AND (`&`)**: Performs a bitwise AND operation. Each bit of the result is 1 if the corresponding bits of both operands are 1; otherwise, it is 0.
+   ```java
+   int a = 5; // 0101 in binary
+   int b = 3; // 0011 in binary
+   int result = a & b; // 0001 in binary (1 in decimal)
+   ```
+
+2. **OR (`|`)**: Performs a bitwise OR operation. Each bit of the result is 1 if at least one of the corresponding bits of the operands is 1.
+   ```java
+   int result = a | b; // 0111 in binary (7 in decimal)
+   ```
+
+3. **XOR (`^`)**: Performs a bitwise XOR operation. Each bit of the result is 1 if the corresponding bits of the operands are different; otherwise, it is 0.
+   ```java
+   int result = a ^ b; // 0110 in binary (6 in decimal)
+   ```
+
+4. **Complement (`~`)**: Inverts all the bits of the operand.
+   ```java
+   int result = ~a; // 1010 in binary (in decimal, this is -6 due to sign bit)
+   ```
+
+5. **Left Shift (`<<`)**: Shifts the bits of the number to the left by a specified number of positions. This operation fills the vacated bits on the right with 0s.
+   ```java
+   int result = a << 1; // 1010 in binary (10 in decimal)
+   ```
+
+6. **Right Shift (`>>`)**: Shifts the bits of the number to the right by a specified number of positions. The sign bit is used to fill the vacated bits on the left.
+   ```java
+   int result = a >> 1; // 0010 in binary (2 in decimal)
+   ```
+
+7. **Unsigned Right Shift (`>>>`)**: Shifts the bits of the number to the right by a specified number of positions, filling the vacated bits on the left with 0s, regardless of the sign bit.
+   ```java
+   int result = a >>> 1; // 0010 in binary (2 in decimal)
+   ```
+
+These operators can be useful for low-level programming, such as in systems programming, graphics, or performance optimization tasks.
