@@ -178,3 +178,22 @@ Bitwise operators in Java are used to perform operations on the binary represent
    ```
 
 These operators can be useful for low-level programming, such as in systems programming, graphics, or performance optimization tasks.
+
+### String Function:
+To capitalize an entire word (all characters in uppercase) in Java, use:
+
+```java
+String capitalizedWord = yourString.toUpperCase();
+```
+
+This will convert the entire string to uppercase. For example:
+
+```java
+String word = "hello";
+String capitalizedWord = word.toUpperCase(); // Output: "HELLO"
+```
+
+```
+str.toLowerCase();
+```
+for lower casing 
