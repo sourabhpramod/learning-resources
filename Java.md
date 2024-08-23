@@ -202,5 +202,5 @@ for lower casing
 ### to get the end of an array with bigger size but lower number of elements:
 
 ```java
-for(int i=0; i<\0; i++)
+for(int i=0; c[i]!='\0'; i++)
 ```
