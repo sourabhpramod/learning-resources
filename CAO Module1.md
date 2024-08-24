@@ -1,4 +1,9 @@
-# Basic Summary of the whole Module 1:
+# MODULE 1:
+
+
+
+
+## Basic Summary of the whole Module 1:
 The topics you mentioned cover fundamental concepts in computer architecture and organization. Below is a detailed explanation:
 
 ### 1. **Overview of Organization and Architecture**
