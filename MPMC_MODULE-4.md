@@ -30,6 +30,12 @@ Timers and counters are essential components of the 8051 microcontroller, used f
    - **C/T**: Timer or Counter select bit.
      - `0` for Timer operation (internal clock).
      - `1` for Counter operation (external clock on T0/T1 pins).
+
+**Note:
+C/T = 1 : Act as a counter and recieve external input values from P3.5 pin for T1 and P3.4 for T0
+C/T = 0 : Act as a timer and recieve input signal from internal system clock**
+
+
    - **M1, M0**: Mode selection bits.
      - `00` - Mode 0 (13-bit timer/counter).
      - `01` - Mode 1 (16-bit timer/counter).
@@ -53,7 +59,7 @@ Timers and counters are essential components of the 8051 microcontroller, used f
    ```
 
    - **TF1**: Timer 1 overflow flag.
-   - **TR1**: Timer 1 run control bit.
+   - **TR1**: Timer 1 run control bit, SETB to run, CLR to stop 
    - **TF0**: Timer 0 overflow flag.
    - **TR0**: Timer 0 run control bit.
    - **IE1, IT1, IE0, IT0**: Interrupt flags and controls.
