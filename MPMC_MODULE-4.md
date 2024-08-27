@@ -36,6 +36,8 @@ C/T = 1 : Act as a counter and recieve external input values from P3.5 pin for T
 C/T = 0 : Act as a timer and recieve input signal from internal system clock**
 
 
+**To keep modes through code be like #50H as 5: 0101, that's like 0-Gate, 1-C/T, 01 mode.**
+
    - **M1, M0**: Mode selection bits.
      - `00` - Mode 0 (13-bit timer/counter).
      - `01` - Mode 1 (16-bit timer/counter).
