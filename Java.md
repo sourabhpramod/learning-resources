@@ -204,3 +204,32 @@ for lower casing
 ```java
 for(int i=0; c[i]!='\0'; i++)
 ```
+
+## TO TAKE CHAR AS INPUT 
+
+To take a character as input in Java, you can use the `Scanner` class and its `next().charAt(0)` method. This method reads a `String` from the user and extracts the first character of that `String`.
+
+Here's an example:
+
+```java
+import java.util.Scanner;
+
+public class CharacterInput {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a character: ");
+        char input = scanner.next().charAt(0);
+
+        System.out.println("You entered: " + input);
+
+        scanner.close();
+    }
+}
+```
+
+### Explanation:
+- `Scanner scanner = new Scanner(System.in);` creates a `Scanner` object to read input from the console.
+- `scanner.next().charAt(0);` reads the input as a `String` and then `charAt(0)` extracts the first character of that `String`.
+- The character is then stored in the variable `input` and can be used as needed.
+
+This method ensures you capture a single character from the user's input.
