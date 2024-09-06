@@ -233,3 +233,10 @@ public class CharacterInput {
 - The character is then stored in the variable `input` and can be used as needed.
 
 This method ensures you capture a single character from the user's input.
+
+
+## To find number of digits in a number
+
+```
+int numDigits = String.valueOf(number).length();
+```
