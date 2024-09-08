@@ -746,7 +746,7 @@ Hexadecimal: 37 to Binary: 110111
 
 
 ### Permutations of a given string
-```
+```java
 public class Permutations {
 
     // Function to print all permutations of a given string
