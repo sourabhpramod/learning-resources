@@ -787,3 +787,63 @@ public class Permutations {
     }
 }
 ```
+
+
+Here's how Vimal can implement the `calculateSubnets` method in Java to calculate the number of possible subnets based on the given IP address and subnet mask in CIDR notation:
+
+```java
+import java.util.Scanner;
+
+public class SubnetCalculator {
+
+    public static void calculateSubnets(String ipAddress, String cidrNotation) {
+        // Extract the number after the '/' from the CIDR notation
+        int subnetBits = Integer.parseInt(cidrNotation.split("/")[1]);
+        
+        // Total number of bits in an IPv4 address is 32
+        int totalBits = 32;
+        
+        // The number of host bits is the difference between total bits and subnet bits
+        int hostBits = totalBits - subnetBits;
+        
+        // Number of subnets is 2 raised to the power of hostBits
+        int numberOfSubnets = (int) Math.pow(2, hostBits);
+        
+        // Print the result
+        System.out.println("Number of Subnets: " + numberOfSubnets);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Input IP address
+        String ipAddress = scanner.nextLine();
+        
+        // Input CIDR notation
+        String cidrNotation = scanner.nextLine();
+        
+        // Call the method to calculate subnets
+        calculateSubnets(ipAddress, cidrNotation);
+        
+        scanner.close();
+    }
+}
+```
+
+### Explanation:
+1. **Input Handling**: The program reads the IP address and CIDR notation from user input.
+2. **Subnet Calculation**:
+   - The subnet bits are extracted from the CIDR notation by splitting the string on `/` and converting the second part to an integer.
+   - The number of host bits is calculated by subtracting the subnet bits from 32 (total number of bits in an IPv4 address).
+   - The number of subnets is calculated as \(2^{\text{hostBits}}\).
+3. **Output**: The number of possible subnets is printed.
+
+### Sample Output:
+```
+Input:
+192.168.1.0
+/24
+
+Output:
+Number of Subnets: 256
+```
