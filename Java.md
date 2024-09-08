@@ -743,3 +743,47 @@ Hexadecimal: 37 to Binary: 110111
 - **Hexadecimal to Binary**:
   - Use `Integer.parseInt(hex, 16)` to convert hexadecimal to decimal, then `Integer.toBinaryString(decimal)` to convert decimal to binary.
   - Alternatively, convert each hexadecimal digit to its 4-bit binary representation using a lookup table.
+
+
+### Permutations of a given string
+```
+public class Permutations {
+
+    // Function to print all permutations of a given string
+    public static void printPermutations(String str) {
+        // Convert the string to a character array
+        char[] chars = str.toCharArray();
+        // Call the recursive function to generate permutations
+        generatePermutations(chars, 0);
+    }
+
+    // Recursive function to generate permutations
+    private static void generatePermutations(char[] chars, int index) {
+        if (index == chars.length - 1) {
+            // If the index is at the end of the array, print the permutation
+            System.out.println(new String(chars));
+        } else {
+            for (int i = index; i < chars.length; i++) {
+                // Swap the current index with the loop index
+                swap(chars, index, i);
+                // Recurse for the next index
+                generatePermutations(chars, index + 1);
+                // Swap back to the original configuration
+                swap(chars, index, i);
+            }
+        }
+    }
+
+    // Helper method to swap characters in the array
+    private static void swap(char[] chars, int i, int j) {
+        char temp = chars[i];
+        chars[i] = chars[j];
+        chars[j] = temp;
+    }
+
+    public static void main(String[] args) {
+        String str = "ABC";
+        printPermutations(str);
+    }
+}
+```
