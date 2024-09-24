@@ -847,3 +847,123 @@ Input:
 Output:
 Number of Subnets: 256
 ```
+
+
+In Java, classes and objects form the foundation of Object-Oriented Programming (OOP). Here's a breakdown of the syntax, including constructors, with important details to remember:
+
+### 1. **Class Syntax**
+A class is a blueprint for objects, defining properties (fields) and behaviors (methods).
+
+```java
+class ClassName {
+    // Fields (attributes)
+    int field1;
+    String field2;
+
+    // Methods (behaviors)
+    void method1() {
+        // method implementation
+    }
+}
+```
+
+### Example:
+```java
+class Car {
+    String model;
+    int year;
+
+    void displayDetails() {
+        System.out.println("Model: " + model + ", Year: " + year);
+    }
+}
+```
+
+### 2. **Object Creation**
+To create an object from a class, use the `new` keyword.
+
+```java
+ClassName objectName = new ClassName();
+```
+
+### Example:
+```java
+Car myCar = new Car();
+```
+
+### 3. **Constructor Syntax**
+A constructor is a special method used to initialize objects. It has the same name as the class and **no return type**.
+
+- **Default constructor**: Provided by Java if no constructor is defined.
+- **Parameterized constructor**: Used to initialize fields with specific values.
+
+```java
+class ClassName {
+    // Constructor
+    ClassName() {
+        // constructor implementation
+    }
+
+    // Parameterized Constructor
+    ClassName(int param1, String param2) {
+        // Initialize fields
+    }
+}
+```
+
+### Example:
+```java
+class Car {
+    String model;
+    int year;
+
+    // Default constructor
+    Car() {
+        model = "Unknown";
+        year = 2020;
+    }
+
+    // Parameterized constructor
+    Car(String modelName, int yearOfManufacture) {
+        model = modelName;
+        year = yearOfManufacture;
+    }
+
+    void displayDetails() {
+        System.out.println("Model: " + model + ", Year: " + year);
+    }
+}
+
+// Creating objects
+Car defaultCar = new Car();  // Calls default constructor
+Car customCar = new Car("Toyota", 2021);  // Calls parameterized constructor
+```
+
+### 4. **Important Details for a Test**
+
+- **Constructor rules**: 
+  - No return type.
+  - Same name as the class.
+  - If no constructor is written, Java provides a default constructor.
+  - If you define any constructor, Java will not provide the default constructor automatically.
+
+- **Constructor overloading**: 
+  - You can have multiple constructors in a class, each with different parameter lists.
+
+- **Object instantiation**: 
+  - Objects are instances of classes.
+  - Object reference variables store the memory address of the object.
+  
+- **Access modifiers**: 
+  - Constructors and fields can have access modifiers like `public`, `private`, `protected`, or no modifier (default/package-private).
+
+### 5. **Memory allocation**
+- **Heap memory**: Objects are stored in heap memory.
+- **Stack memory**: Local variables, including object references, are stored in the stack.
+
+### Testing Notes:
+- Ensure constructors are properly defined for class instantiation.
+- Test if objects are initialized with expected values (especially with parameterized constructors).
+- When testing multiple constructors, verify that each initializes fields correctly.
+- Handle cases where constructors might throw exceptions (like when working with invalid input parameters).
+
