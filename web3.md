@@ -1,10 +1,10 @@
 # Getting started on a web3 project with hardhat:
 
-```bash
+```Bash
 nvm use 18
 
 ```
-```bash
+```Bash
 yarn add --dev hardhat
 
 ```
