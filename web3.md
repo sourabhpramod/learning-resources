@@ -32,6 +32,11 @@ require("dotenv").config()
  */
 ```
 
+### To compile:
+```
+yarn hardhat compile
+```
+
 ## Tools
 ### Web3 Tools & Services
 
