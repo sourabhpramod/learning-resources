@@ -6,5 +6,9 @@ nvm use 18
 ```
 ```Bash
 yarn add --dev hardhat
+```
+```Bash
+yarn hardhat
 
 ```
+
