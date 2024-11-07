@@ -96,7 +96,7 @@ int main() {
 
 
 Here's how to implement a binary search tree (BST) with creation, insertion, deletion, and traversal (inorder, preorder, and postorder) in C.
-
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -232,6 +232,7 @@ int main() {
 
     return 0;
 }
+```
 
 Explanation:
 
@@ -259,4 +260,6 @@ postorderTraversal(): Left, Right, Root.
 
 
 The main() function demonstrates insertion, traversal, and deletion in the BST.
+
+
 
