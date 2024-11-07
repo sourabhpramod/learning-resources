@@ -263,3 +263,75 @@ The main() function demonstrates insertion, traversal, and deletion in the BST.
 
 
 
+### LEVEL ORDER TRAVERSAL
+
+```c
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure
+struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+// Function to find the height of the tree
+int height(struct Node* root) {
+    if (root == NULL) {
+        return 0;
+    }
+    int leftHeight = height(root->left);
+    int rightHeight = height(root->right);
+    return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
+}
+
+// Function to print nodes at a given level
+void printGivenLevel(struct Node* root, int level) {
+    if (root == NULL) {
+        return;
+    }
+    if (level == 1) {
+        printf("%d ", root->data);
+    } else if (level > 1) {
+        printGivenLevel(root->left, level - 1);
+        printGivenLevel(root->right, level - 1);
+    }
+}
+
+// Level order traversal function
+void levelOrderTraversal(struct Node* root) {
+    int h = height(root);
+    for (int i = 1; i <= h; i++) {
+        printGivenLevel(root, i);
+    }
+}
+
+// Main function
+int main() {
+    struct Node* root = createNode(1);
+    root->left = createNode(2);
+    root->right = createNode(3);
+    root->left->left = createNode(4);
+    root->left->right = createNode(5);
+    root->right->left = createNode(6);
+    root->right->right = createNode(7);
+
+    printf("Level order traversal: ");
+    levelOrderTraversal(root);
+    printf("\n");
+
+    return 0;
+}
+
+```
+
