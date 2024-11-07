@@ -1,3 +1,6 @@
+Here's some C code to create a basic binary tree with insert and traversal functions:
+
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -81,3 +84,12 @@ int main() {
 
     return 0;
 }
+```
+
+### Explanation:
+1. **Node structure**: Each node has an integer `data` and two pointers, `left` and `right`, pointing to the left and right children.
+2. **Insert function**: Recursively inserts nodes by comparing values to place each node on the left or right subtree.
+3. **Traversal functions**:
+   - **In-order**: Left subtree, Root, Right subtree
+   - **Pre-order**: Root, Left subtree, Right subtree
+   - **Post-order**: Left subtree, Right subtree, Root
