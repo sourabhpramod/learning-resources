@@ -967,3 +967,104 @@ Car customCar = new Car("Toyota", 2021);  // Calls parameterized constructor
 - When testing multiple constructors, verify that each initializes fields correctly.
 - Handle cases where constructors might throw exceptions (like when working with invalid input parameters).
 
+
+
+In Java, strings come with several useful methods that make it easier to manipulate and analyze text. Here are some commonly used ones:
+
+1. length()
+Returns the length of the string.
+
+String s = "hello";
+int len = s.length(); // 5
+
+
+2. charAt(int index)
+Returns the character at the specified index.
+
+char ch = s.charAt(1); // 'e'
+
+
+3. substring(int beginIndex, int endIndex)
+Returns a substring from beginIndex to endIndex (exclusive).
+
+String sub = s.substring(1, 4); // "ell"
+
+
+4. indexOf(String str)
+Returns the index of the first occurrence of the specified substring, or -1 if not found.
+
+int index = s.indexOf("e"); // 1
+
+
+5. toLowerCase() and toUpperCase()
+Converts all characters to lowercase or uppercase.
+
+String lower = s.toLowerCase(); // "hello"
+String upper = s.toUpperCase(); // "HELLO"
+
+
+6. trim()
+Removes any leading and trailing whitespace.
+
+String str = "  hello  ";
+String trimmed = str.trim(); // "hello"
+
+
+7. replace(char oldChar, char newChar)
+Replaces all occurrences of a specified character with another character.
+
+String replaced = s.replace('e', 'a'); // "hallo"
+
+
+8. equals(Object another)
+Checks if two strings are equal.
+
+boolean isEqual = s.equals("hello"); // true
+
+
+9. equalsIgnoreCase(String another)
+Checks if two strings are equal, ignoring case.
+
+boolean isEqualIgnoreCase = s.equalsIgnoreCase("HELLO"); // true
+
+
+10. split(String regex)
+Splits the string around matches of the given regular expression.
+
+String[] parts = s.split("e"); // ["h", "llo"]
+
+
+11. contains(CharSequence s)
+Checks if the string contains the specified sequence.
+
+boolean containsHello = s.contains("ell"); // true
+
+
+12. startsWith(String prefix) and endsWith(String suffix)
+Checks if the string starts or ends with a given substring.
+
+boolean starts = s.startsWith("he"); // true
+boolean ends = s.endsWith("lo"); // true
+
+
+13. isEmpty()
+Checks if the string is empty (has zero length).
+
+boolean empty = s.isEmpty(); // false
+
+
+14. concat(String str)
+Concatenates the specified string to the end of the current string.
+
+String concatenated = s.concat(" world"); // "hello world"
+
+
+15. toCharArray()
+Converts the string to a character array.
+
+char[] charArray = s.toCharArray(); // ['h', 'e', 'l', 'l', 'o']
+
+
+
+These methods help with various common tasks in string manipulation, such as finding substrings, checking equality, modifying case, and more.
+
