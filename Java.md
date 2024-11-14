@@ -974,9 +974,10 @@ In Java, strings come with several useful methods that make it easier to manipul
 1. length()
 Returns the length of the string.
 
+```java
 String s = "hello";
 int len = s.length(); // 5
-
+```
 
 2. charAt(int index)
 Returns the character at the specified index.
