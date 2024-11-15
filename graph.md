@@ -1,3 +1,201 @@
+Here’s the implementation of DFS, BFS, Prim's, and Dijkstra's algorithms using an adjacency matrix in C.
+
+```c
+
+Graph Initialization
+
+First, let's define the graph structure using an adjacency matrix.
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+#define MAX 100
+#define INF 999999
+
+int adjMatrix[MAX][MAX];
+int V; // Number of vertices
+
+void initGraph(int vertices) {
+    V = vertices;
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
+            adjMatrix[i][j] = 0;  // No edges initially
+        }
+    }
+}
+
+void addEdge(int src, int dest, int weight) {
+    adjMatrix[src][dest] = weight;
+    adjMatrix[dest][src] = weight;  // Comment this line if graph is directed
+}
+
+DFS (Depth-First Search)
+
+void DFS(int start, bool visited[]) {
+    visited[start] = true;
+    printf("%d ", start);
+
+    for (int i = 0; i < V; i++) {
+        if (adjMatrix[start][i] != 0 && !visited[i]) {
+            DFS(i, visited);
+        }
+    }
+}
+
+void performDFS(int start) {
+    bool visited[MAX] = {false};
+    DFS(start, visited);
+}
+
+BFS (Breadth-First Search)
+
+void BFS(int start) {
+    bool visited[MAX] = {false};
+    int queue[MAX];
+    int front = 0, rear = 0;
+
+    queue[rear++] = start;
+    visited[start] = true;
+
+    while (front != rear) {
+        int current = queue[front++];
+        printf("%d ", current);
+
+        for (int i = 0; i < V; i++) {
+            if (adjMatrix[current][i] != 0 && !visited[i]) {
+                queue[rear++] = i;
+                visited[i] = true;
+            }
+        }
+    }
+}
+
+Prim's Algorithm
+
+int findMinKey(int key[], bool mstSet[]) {
+    int min = INF, minIndex;
+    for (int v = 0; v < V; v++) {
+        if (!mstSet[v] && key[v] < min) {
+            min = key[v];
+            minIndex = v;
+        }
+    }
+    return minIndex;
+}
+
+void primMST() {
+    int parent[MAX], key[MAX];
+    bool mstSet[MAX] = {false};
+
+    for (int i = 0; i < V; i++) {
+        key[i] = INF;
+    }
+    key[0] = 0;
+    parent[0] = -1;
+
+    for (int count = 0; count < V - 1; count++) {
+        int u = findMinKey(key, mstSet);
+        mstSet[u] = true;
+
+        for (int v = 0; v < V; v++) {
+            if (adjMatrix[u][v] && !mstSet[v] && adjMatrix[u][v] < key[v]) {
+                parent[v] = u;
+                key[v] = adjMatrix[u][v];
+            }
+        }
+    }
+
+    printf("Edge \tWeight\n");
+    for (int i = 1; i < V; i++) {
+        printf("%d - %d \t%d \n", parent[i], i, adjMatrix[i][parent[i]]);
+    }
+}
+
+Dijkstra's Algorithm
+
+int findMinDistance(int dist[], bool sptSet[]) {
+    int min = INF, minIndex;
+
+    for (int v = 0; v < V; v++) {
+        if (!sptSet[v] && dist[v] < min) {
+            min = dist[v];
+            minIndex = v;
+        }
+    }
+    return minIndex;
+}
+
+void dijkstra(int src) {
+    int dist[MAX];
+    bool sptSet[MAX] = {false};
+
+    for (int i = 0; i < V; i++) {
+        dist[i] = INF;
+    }
+    dist[src] = 0;
+
+    for (int count = 0; count < V - 1; count++) {
+        int u = findMinDistance(dist, sptSet);
+        sptSet[u] = true;
+
+        for (int v = 0; v < V; v++) {
+            if (!sptSet[v] && adjMatrix[u][v] && dist[u] != INF && dist[u] + adjMatrix[u][v] < dist[v]) {
+                dist[v] = dist[u] + adjMatrix[u][v];
+            }
+        }
+    }
+
+    printf("Vertex \tDistance from Source\n");
+    for (int i = 0; i < V; i++) {
+        printf("%d \t\t %d\n", i, dist[i]);
+    }
+}
+
+Usage Example
+
+int main() {
+    initGraph(5); // Initialize a graph with 5 vertices
+
+    addEdge(0, 1, 2);
+    addEdge(0, 3, 6);
+    addEdge(1, 2, 3);
+    addEdge(1, 3, 8);
+    addEdge(1, 4, 5);
+    addEdge(2, 4, 7);
+    addEdge(3, 4, 9);
+
+    printf("DFS starting from vertex 0:\n");
+    performDFS(0);
+    printf("\n");
+
+    printf("BFS starting from vertex 0:\n");
+    BFS(0);
+    printf("\n");
+
+    printf("Prim's MST:\n");
+    primMST();
+
+    printf("Dijkstra's shortest path from vertex 0:\n");
+    dijkstra(0);
+
+    return 0;
+}
+```
+Explanation
+
+DFS and BFS explore the graph using depth-first and breadth-first strategies, respectively.
+
+Prim's MST finds the minimum spanning tree of a graph, showing the edges and weights in the MST.
+
+Dijkstra's Algorithm calculates the shortest path from the source vertex to all other vertices.
+
+
+
+
+
+
 ```c
 
 #include <stdio.h>
