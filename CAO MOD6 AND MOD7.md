@@ -92,11 +92,11 @@ Here's the full detailed breakdown of **everything** in your uploaded presentati
 #### **Exercises in Module 6**
 - **Storage Capacity Calculation**:
   - Example: Disk with 8 surfaces, 5000 tracks per surface, 64 sectors per track, and 1024 bytes/sector.
-  - **Capacity** = \( 8 \times 5000 \times 64 \times 1024 = 2500 \, \text{MB} \).
+  - **Capacity** = 8 × 5000 × 64 × 1024 = 2,500MB
 
 - **Transfer Rate**:
   - Example: Rotational speed = 500 rps, 102,400 bytes per revolution.
-  - **Transfer Rate** = \( 102,400 \times 500 = 51.2 \, \text{MB/s} \).
+  - **Transfer Rate** = 102,400 × 500 = 51.2 MB/s
 
 ---
 
@@ -173,11 +173,11 @@ Here's the full detailed breakdown of **everything** in your uploaded presentati
 #### **Exercises in Module 7**
 - **CPI Calculation**:
   - Example: A superscalar processor executes 1000 instructions, with 100 cycles of data hazards, 50 cycles of branch mispredictions, and 30 cycles of cache misses.
-  - **CPI** = \( \frac{\text{Total Cycles}}{\text{Total Instructions}} = \frac{430}{1000} = 0.43 \).
+  - **CPI** = Total Cycles / Total Instructions = 430 / 1000 = 0.43
 
 - **Speedup**:
   - Example: Scalar processor takes 300 cycles; superscalar takes 100 cycles.
-  - **Speedup** = \( \frac{\text{Scalar Time}}{\text{Superscalar Time}} = \frac{300}{100} = 3 \).
+  - **Speedup** = (Scalar Time) / (Superscalar Time) = 300 / 100 = 3
 
 ---
 
