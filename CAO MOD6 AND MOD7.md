@@ -329,6 +329,12 @@ Pipelining is a technique in CPU design where multiple instruction phases are ov
    - **Dynamic Scheduling**:
      - **Tomasulo’s Algorithm**: Resolves hazards by renaming registers.
    - **Speculative Execution**: Executes instructions before confirming branch decisions.
+  
+- **Multiple Execution Units:** Multiple units (ALUs, FPUs, load/store units) for parallel instruction execution.
+- **Instruction-Level Parallelism (ILP):** Executes multiple instructions per clock cycle by identifying independent instructions.
+- **Dynamic Scheduling:** Uses techniques like out-of-order execution and register renaming to find and execute independent instructions dynamically.
+- **Pipeline Design:** Multiple pipelines for different instruction types enable parallel execution.
+
 
 ---
 
