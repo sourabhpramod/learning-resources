@@ -348,6 +348,9 @@ Pipelining is a technique in CPU design where multiple instruction phases are ov
 
 ---
 
+![image](https://github.com/user-attachments/assets/fcf35ea4-c991-43bf-a473-cfa7b9cbc57b)
+
+
 #### **Exercises in Module 7**
 - **CPI Calculation**:
   - Example: A superscalar processor executes 1000 instructions, with 100 cycles of data hazards, 50 cycles of branch mispredictions, and 30 cycles of cache misses.
