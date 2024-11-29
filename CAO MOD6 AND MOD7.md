@@ -168,29 +168,40 @@ The controller is a critical component of an SSD that manages how data is writte
 SSDs are ideal for performance-critical applications due to their speed, durability, and efficiency. However, their higher cost and capacity limitations compared to HDDs make them less suitable for bulk storage. With advancements in technology, SSDs are becoming increasingly popular across consumer, enterprise, and industrial applications.
 
 #### **RAID (Redundant Array of Independent Disks)**
-- Combines multiple drives for improved speed, reliability, or both.
+Combines multiple drives for improved speed, reliability, or both.
 
-1. **RAID 0 (Striping)**:
-   - Splits data across drives.
-   - High speed, no redundancy (data loss if one drive fails).
+- **RAID 0 (Striping)**:  
+  Splits data across drives.  
+  High speed, no redundancy (data loss if one drive fails).
 
-2. **RAID 1 (Mirroring)**:
-   - Duplicates data across drives.
-   - High redundancy, lower storage efficiency.
+- **RAID 1 (Mirroring)**:  
+  Duplicates data across drives.  
+  High redundancy, lower storage efficiency.
 
-3. **RAID 5**:
-   - Stripes data with distributed parity.
-   - Can tolerate one disk failure.
-   - Balances speed and fault tolerance.
+- **RAID 2**:  
+  Uses bit-level striping with error correction (Hamming code).  
+  Rarely used due to high hardware requirements.
 
-4. **RAID 6**:
-   - Like RAID 5 but adds dual parity.
-   - Can handle two drive failures.
+- **RAID 3**:  
+  Byte-level striping with a dedicated parity drive.  
+  Good for sequential data but poor for random access.
 
-5. **RAID 10**:
-   - Combines RAID 1 (mirroring) and RAID 0 (striping).
-   - High speed and redundancy, but expensive.
+- **RAID 4**:  
+  Block-level striping with a dedicated parity drive.  
+  Better random read performance than RAID 3 but limited by the parity drive.
 
+- **RAID 5**:  
+  Stripes data with distributed parity.  
+  Can tolerate one disk failure.  
+  Balances speed and fault tolerance.
+
+- **RAID 6**:  
+  Like RAID 5 but adds dual parity.  
+  Can handle two drive failures.
+
+- **RAID 10**:  
+  Combines RAID 1 (mirroring) and RAID 0 (striping).  
+  High speed and redundancy, but expensive.  
 ---
 
 #### **Exercises in Module 6**
