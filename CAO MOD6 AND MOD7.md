@@ -258,6 +258,63 @@ Combines multiple drives for improved speed, reliability, or both.
 
 ---
 
+### **Pipelining Hazards in Detail**  
+Pipelining is a technique in CPU design where multiple instruction phases are overlapped to improve performance. However, **hazards** can disrupt the smooth flow of instructions through the pipeline.
+
+#### **1. Structural Hazards**
+- **Definition**:  
+  Occurs when two or more instructions require the same hardware resource simultaneously. This conflict stalls the pipeline.
+  
+- **Example**:  
+  If a single memory unit is used for both instruction fetch and data read/write, a conflict arises when an instruction fetch and data access occur at the same time.
+
+- **Solution**:  
+  - Use **multiple resources**: Add separate memory units for instructions and data (Harvard architecture).
+  - Implement **resource pipelining**: Divide a resource into subcomponents to allow partial parallel use.
+
+---
+
+#### **2. Data Hazards**
+- **Definition**:  
+  Occurs when instructions depend on the results of previous instructions.  
+
+- **Types**:  
+  - **RAW (Read After Write)**: A subsequent instruction tries to read a value before the previous instruction writes it.  
+  - **WAR (Write After Read)**: A subsequent instruction writes a value before the previous instruction reads it (rare in modern architectures).  
+  - **WAW (Write After Write)**: Two instructions write to the same register, and the second one overwrites the first (common in out-of-order execution).
+
+- **Example**:  
+  ```assembly
+  ADD R1, R2, R3  ; R1 = R2 + R3
+  SUB R4, R1, R5  ; Uses R1 before the result is written
+  ```
+
+- **Solution**:  
+  - **Stalling**: Pause the pipeline until the dependency resolves.  
+  - **Forwarding (Data Bypassing)**: Pass the result directly from one stage to another without writing it to a register.  
+  - **Compiler Scheduling**: Rearrange instructions to minimize dependencies.
+
+---
+
+#### **3. Control Hazards**
+- **Definition**:  
+  Occurs when the pipeline doesn’t know which instruction to fetch next due to a branch or jump.
+
+- **Example**:  
+  ```assembly
+  BEQ R1, R2, LABEL  ; Conditional branch
+  ; Pipeline doesn’t know if it should fetch the next instruction or jump to LABEL
+  ```
+
+- **Solution**:  
+  - **Branch Prediction**: Predict the outcome of a branch and continue fetching instructions based on the prediction.  
+  - **Static Prediction**: Predict branches based on predefined rules (e.g., always not taken).  
+  - **Dynamic Prediction**: Use hardware mechanisms (e.g., branch history tables) to make predictions.  
+  - **Branch Delay Slots**: Execute a non-critical instruction in the branch delay slot (compiler optimization).  
+  - **Speculative Execution**: Execute both paths and discard the incorrect one after the branch resolves.  
+
+---
+
 #### **Superscalar Architecture**
 1. **Features**:
    - Multiple pipelines allow parallel instruction execution.
