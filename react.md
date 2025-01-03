@@ -88,3 +88,6 @@ class Clock extends Component{
     }
 }
 ```
+
+# HOOKS, CONTEXT AND PERFORMANCE APPLICATION
+## Learn advanced
