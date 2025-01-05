@@ -52,8 +52,6 @@ export default App;
 import { useState } from 'react';
 import './App.css';
 
-
-
 const App = ()=> {
   const[counter, setCounter] = useState(0);
 
@@ -75,6 +73,13 @@ const App = ()=> {
 export default App;
 
 ```
+### For using API 
+```js
+const searchMovies = async (title)=>{
+    const response = await fetch(`${API_URL}&s=${title}`);
+    const data = await response.json();
+```
+
 ### State and life-cycle methods:
 
 The below example uses both state and lifecycle methods
