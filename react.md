@@ -46,6 +46,35 @@ function App(){
 
 export default App;
 ```
+
+### Using states in react for changes:
+```js
+import { useState } from 'react';
+import './App.css';
+
+
+
+const App = ()=> {
+  const[counter, setCounter] = useState(0);
+
+  const name = 'john'
+  return (
+    <div className="App">
+      <button onClick={()=>{
+        setCounter((prevCount)=>prevCount+1)
+      }}>+</button>
+      <h1>{counter}</h1>
+      <button onClick={()=>{
+        setCounter((prevCount)=>prevCount-1)
+      }}>-</button>
+
+    </div>
+  );
+}
+
+export default App;
+
+```
 ### State and life-cycle methods:
 
 The below example uses both state and lifecycle methods
