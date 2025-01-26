@@ -142,3 +142,145 @@ The diagrams and visuals in the slides likely depict:
 2. Communication pathways in distributed systems.
 3. OS service interactions (e.g., UI to kernel modules).
 4. Computing environments like client-server and cloud systems.
+5. 
+
+
+# Module 2
+
+The PowerPoint presentation dives deep into **Module 2: System Calls** and covers related concepts like processes, threads, interrupts, and system call types. Here’s a comprehensive summary of its content:
+
+---
+
+### **1. Introduction to System Calls**
+- **Definition:** Programming interface for accessing OS services, typically via APIs in high-level languages like C or C++.
+- **Common APIs:**
+  - Win32 API (Windows)
+  - POSIX API (UNIX, Linux, Mac OS X)
+  - Java API (Java Virtual Machine)
+- **Example:** The `printf()` function in C indirectly invokes the `write()` system call.
+
+---
+
+### **2. System Call Implementation**
+- Each system call has a unique number.
+- **System-call Interface:** Maintains a table indexed by call numbers to invoke kernel functions.
+- Details are abstracted via APIs and runtime libraries, hiding implementation complexity.
+
+---
+
+### **3. Parameter Passing**
+- **Methods:**
+  1. Passing parameters in registers (simple).
+  2. Storing parameters in memory blocks and passing their address.
+  3. Using the program stack to push parameters and pop them later.
+- **Advantages:** The block and stack methods allow flexible parameter lengths.
+
+---
+
+### **4. Types of System Calls**
+- **Process Control:**
+  - Create, terminate, or manage processes.
+  - Handle debugging and resource allocation.
+- **File Management:**
+  - Create, delete, read, write, and manipulate file attributes.
+- **Device Management:**
+  - Request or release devices, adjust attributes, and attach/detach devices.
+- **Information Maintenance:**
+  - Retrieve or set time, system data, and process attributes.
+- **Communication:**
+  - Enable inter-process communication (message passing or shared memory).
+- **Protection:**
+  - Control resource access, set permissions, and manage user authentication.
+
+---
+
+### **5. Protection and Modes**
+- **Dual-Mode Operation:** Differentiates between **user mode** and **kernel mode** using a mode bit.
+  - Privileged instructions are restricted to kernel mode.
+  - System calls shift to kernel mode and revert after execution.
+- **Timer Interrupts:** Prevent resource hogging or infinite loops by setting a timer to interrupt processes exceeding allotted time.
+
+---
+
+### **6. Interrupt Handling**
+- Interrupts shift control to an **Interrupt Service Routine** (ISR) via an interrupt vector.
+- **Types:**
+  - **Hardware Interrupts:** Triggered by devices.
+  - **Software Interrupts (Traps/Exceptions):** Triggered by errors or user requests.
+- Interrupt architecture saves the interrupted instruction’s address and determines the appropriate action (polling or vectored systems).
+
+---
+
+### **7. Process Concept**
+- **Definition:** A program in execution.
+- **Components:**
+  - **Text Section:** Code instructions.
+  - **Current Activity:** Includes the program counter and registers.
+  - **Stack:** Temporary data like function parameters and local variables.
+  - **Data Section:** Global variables.
+  - **Heap:** Dynamically allocated memory.
+
+---
+
+### **8. Process States**
+- **New:** Creation phase.
+- **Running:** Instructions are executed.
+- **Waiting:** Awaiting an event.
+- **Ready:** Awaiting CPU allocation.
+- **Terminated:** Finished execution.
+
+---
+
+### **9. Process Control Block (PCB)**
+- Contains process-specific data:
+  - State, program counter, CPU registers, memory allocation, scheduling info, I/O details, and accounting info.
+
+---
+
+### **10. Process Operations**
+- **Creation:** Parent processes spawn children, forming a process tree.
+  - Example: `fork()` and `exec()` in UNIX.
+- **Termination:** Parent processes can terminate children using the `abort()` call.
+  - Cascading termination occurs when parents terminate, forcing all child processes to terminate.
+
+---
+
+### **11. Threads**
+- **Single-threaded vs. Multithreaded:**
+  - Threads allow multiple execution streams within the same process.
+- **Benefits:**
+  - Improved responsiveness, resource sharing, lower creation overhead, and scalability.
+- **Thread Types:**
+  - **User Threads:** Managed at the user level (e.g., POSIX, Windows, Java threads).
+  - **Kernel Threads:** Supported by the OS kernel.
+
+---
+
+### **12. Multithreading Models**
+- **Many-to-One:** Multiple threads mapped to one kernel thread.
+- **One-to-One:** Each user thread corresponds to a kernel thread.
+- **Many-to-Many:** Combines both approaches for flexibility.
+
+---
+
+### **13. Real-World Examples**
+- **Chrome Browser Architecture:** A multiprocess architecture:
+  - **Browser Process:** Manages UI, disk, and network I/O.
+  - **Renderer Process:** Handles HTML and JavaScript (sandboxed for security).
+  - **Plug-in Process:** Dedicated processes for specific plug-ins.
+
+---
+
+### **14. Thread Creation Example**
+- The `pthread_create()` function in C is used to create threads.
+  - Passes thread attributes, an entry point function, and arguments.
+
+---
+
+### **15. Interrupt and Process Examples**
+- **Interrupts:** Enable event-driven programming by handling software and hardware triggers.
+- **Processes:** Demonstrated with forking examples, showing how process hierarchies and outputs evolve.
+
+---
+
+The presentation references the textbook *Operating System Concepts* by Silberschatz, Gagne, and Galvin, emphasizing practical examples and implementations. Let me know if you'd like specific diagrams or points elaborated!
