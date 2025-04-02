@@ -126,3 +126,148 @@ int main() {
 }
 ```
 
+## Graham's Scan:
+
+```c++
+#include <iostream>
+   #include <vector>
+   #include <algorithm>
+   #include <stack>
+   #include <cmath>
+   
+   using namespace std;
+   
+   struct Point {
+       int x, y;
+   };
+   
+   // Function to find the polar angle
+   double polarAngle(const Point& p0, const Point& p) {
+        return atan2(p.y - p0.y, p.x - p0.x);
+   }
+   
+   // Function to calculate the cross product
+   int crossProduct(const Point& a, const Point& b, const Point& c) {
+        return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+   }
+   
+   // Function to compute the convex hull using Graham Scan
+   vector<Point> grahamScan(vector<Point>& points) {
+        // Find the point with the minimum y-coordinate
+        int minY = 0;
+        for (int i = 1; i < points.size(); ++i) {
+            if (points[i].y < points[minY].y || (points[i].y == points[minY].y && points[i].x < points[minY].x)) {
+                minY = i;
+            }
+        }
+        swap(points[0], points[minY]); // Swap the lowest point to the beginning
+    
+        // Sort points by polar angle with respect to the lowest point
+        sort(points.begin() + 1, points.end(), [&](const Point& a, const Point& b) {
+            double angleA = polarAngle(points[0], a);
+            double angleB = polarAngle(points[0], b);
+            if (angleA == angleB) {
+                return (pow(points[0].x - a.x, 2) + pow(points[0].y - a.y, 2)) < (pow(points[0].x - b.x, 2) + pow(points[0].y - b.y, 2)); //Distance if angles are same
+            }
+            return angleA < angleB;
+        });
+    
+        // Build the convex hull
+        stack<Point> hull;
+        hull.push(points[0]);
+        hull.push(points[1]);
+        hull.push(points[2]);
+    
+        for (int i = 3; i < points.size(); ++i) {
+            Point top = hull.top();
+            hull.pop();
+            while (crossProduct(hull.top(), top, points[i]) <= 0) { // Non-left turn
+                top = hull.top();
+                hull.pop();
+            }
+            hull.push(top);
+            hull.push(points[i]);
+        }
+    
+        // Copy the hull points from the stack to a vector
+        vector<Point> result;
+        while (!hull.empty()) {
+            result.push_back(hull.top());
+            hull.pop();
+        }
+        return result;
+   }
+   
+   int main() {
+        vector<Point> points = {{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}};
+        vector<Point> convexHullPoints = grahamScan(points);
+    
+        cout << "Convex Hull Points:\n";
+        for (const auto& p : convexHullPoints) {
+            cout << "(" << p.x << ", " << p.y << ")\n";
+        }
+    
+        return 0;
+   }
+```
+## Jarvis March:
+
+```c++
+
+#include <iostream>
+   #include <vector>
+   #include <algorithm>
+   #include <cmath>
+   
+   using namespace std;
+   
+   struct Point {
+       int x, y;
+   };
+   
+   // Function to calculate the cross product
+   int crossProduct(const Point& a, const Point& b, const Point& c) {
+        return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+   }
+   
+   // Function to compute the convex hull using Jarvis's March
+   vector<Point> jarvisMarch(vector<Point>& points) {
+        if (points.empty()) return {};
+    
+        vector<Point> hull;
+    
+        // Find the leftmost point
+        int leftMost = 0;
+        for (int i = 1; i < points.size(); ++i) {
+            if (points[i].x < points[leftMost].x) {
+                leftMost = i;
+            }
+        }
+    
+        int p = leftMost, q;
+        do {
+            hull.push_back(points[p]);
+            q = (p + 1) % points.size(); 
+            for (int i = 0; i < points.size(); ++i) {
+                if (crossProduct(points[p], points[i], points[q]) > 0) {
+                    q = i;
+                }
+            }
+            p = q;
+        } while (p != leftMost);
+    
+        return hull;
+   }
+   
+   int main() {
+        vector<Point> points = {{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}};
+        vector<Point> convexHullPoints = jarvisMarch(points);
+    
+        cout << "Convex Hull Points:\n";
+        for (const auto& p : convexHullPoints) {
+            cout << "(" << p.x << ", " << p.y << ")\n";
+        }
+    
+        return 0;
+   }
+```
