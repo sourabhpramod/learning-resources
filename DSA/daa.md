@@ -258,3 +258,60 @@ This presentation provides an overview of network flows and related graph concep
      ```
 
 These pseudocode examples provide a more detailed, step-by-step representation of the algorithms discussed in the presentations, making it easier to understand and implement them.
+
+
+
+You're right to ask for an explanation of the Preflow-Push algorithm! It's an important technique in network flow, often offering efficiency advantages over Ford-Fulkerson. Here's a breakdown:
+
+**Preflow-Push Algorithm: Explanation**
+
+   * **Concept**: Unlike Ford-Fulkerson, which maintains a valid flow at each step, Preflow-Push allows for "preflows." A preflow temporarily allows the flow into a vertex to exceed the flow out of it. The algorithm then works to redistribute this "excess flow" towards the sink.
+   * **Key Ideas**:
+   
+       * **Preflow**: A preflow *f* is a function that satisfies capacity constraints but not necessarily flow conservation. That is, the total flow into a vertex can be greater than the total flow out of it.
+       * **Excess Flow**: For a vertex *v*, the excess flow, denoted as *e(v)*, is the difference between the total flow into *v* and the total flow out of *v*. Vertices with positive excess flow are considered "active."
+       * **Height Function**: A height function *h* assigns a height to each vertex. This function guides the flow pushing process. The height function helps to direct flow towards the sink *t*.
+       * **Push Operation**: Moves excess flow from an active vertex to a neighboring vertex. Flow is pushed from a higher vertex to a lower vertex.
+       * **Relabel Operation**: Increases the height of an active vertex if there's no adjacent vertex to which it can push flow.
+   * **Algorithm Goal**: The Preflow-Push algorithm maintains a preflow and systematically pushes excess flow downhill (according to the height function) towards the sink until a valid maximum flow is obtained.
+
+**Preflow-Push: Pseudocode (Generic Version)**
+
+   ```
+   function PREFLOW_PUSH(graph, source, sink)
+       // Initialization
+       for each vertex v in graph.vertices
+           v.height = 0
+           v.excess_flow = 0
+       source.height = |graph.vertices|  // Height of source is |V|
+       source.excess_flow = infinity
+       for each neighbor v of source
+           push flow from source to v as much as possible
+   
+       // Main loop
+       while there exists an active vertex v (v != source and v != sink)
+           if there exists a neighbor w such that v.height > w.height and residual capacity(v, w) > 0
+               push flow from v to w
+           else
+               relabel v  // Increase v.height
+   ```
+
+**Preflow-Push: Key Operations in Detail**
+
+   * **Push(u, v)**:
+   
+       * Amount of flow to push = min(u.excess\_flow, residual capacity(u, v))
+       * Update:
+           * u.excess\_flow = u.excess\_flow - flow\_amount
+           * v.excess\_flow = v.excess\_flow + flow\_amount
+           * Update residual capacities of (u, v) and (v, u)
+   * **Relabel(u)**:
+   
+       * Increase u.height to min(v.height) + 1, where v is a neighbor of u and residual capacity(u, v) > 0
+
+**Why Preflow-Push?**
+
+   * **Efficiency**: Preflow-Push algorithms can achieve better time complexity than Ford-Fulkerson, especially with efficient implementations (like the push-relabel algorithm with highest-label selection).
+   * **Flexibility**: They don't have the restriction of maintaining a feasible flow at every step, allowing for more flexible flow distribution.
+
+Let me know if you'd like an even more detailed breakdown of specific Preflow-Push variants (like push-relabel with highest label selection) or a deeper dive into the complexity analysis!
