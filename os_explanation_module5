@@ -11,7 +11,7 @@ Think of it as a magic layer between your programs and the actual hardware memor
 
 The OS + hardware (MMU – Memory Management Unit) work together to translate virtual addresses to physical addresses behind the scenes.
 
-
+.
 This allows:
 
 Programs larger than RAM to run.
