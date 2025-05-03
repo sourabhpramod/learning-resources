@@ -178,6 +178,97 @@ The PowerPoint presentation dives deep into **Module 2: System Calls** and cover
 ---
 
 ### **4. Types of System Calls**
+
+### 🔹 1. **Process Control**
+
+🛠️ **Used for:** Creating, terminating, or managing processes.
+
+**Examples:**
+
+* `fork()` – Create a new process
+* `exec()` – Replace process memory with a new program
+* `exit()` – Terminate a process
+* `wait()` – Wait for a child process to finish
+
+---
+
+### 🔹 2. **File Management**
+
+🗃️ **Used for:** Working with files (create, open, read, write, etc.)
+
+**Examples:**
+
+* `open()` – Open a file
+* `read()` – Read from a file
+* `write()` – Write to a file
+* `close()` – Close a file
+* `unlink()` – Delete a file
+
+---
+
+### 🔹 3. **Device Management**
+
+🖥️ **Used for:** Interacting with hardware devices (I/O operations)
+
+**Examples:**
+
+* `ioctl()` – Control device behavior
+* `read()` / `write()` – Communicate with devices
+* `open()` / `close()` – Access device files
+
+---
+
+### 🔹 4. **Information Maintenance**
+
+📊 **Used for:** Getting or setting system or process information.
+
+**Examples:**
+
+* `getpid()` – Get process ID
+* `alarm()` – Set a timer
+* `sleep()` – Pause execution
+* `gettimeofday()` – Get system time
+
+---
+
+### 🔹 5. **Communication (Inter-Process Communication)**
+
+🔗 **Used for:** Communication between processes (IPC)
+
+**Examples:**
+
+* `pipe()` – Create a pipe
+* `shmget()` – Create shared memory
+* `mmap()` – Map files or memory
+* `send()`, `recv()` – Send/receive messages (sockets)
+
+---
+
+### 🔹 6. **Protection**
+
+🛡️ **Used for:** Controlling access to resources, user permissions, etc.
+
+**Examples:**
+
+* `chmod()` – Change file permissions
+* `umask()` – Set default permissions
+* `setuid()` / `getuid()` – Set/get user ID
+
+---
+
+### ✅ Summary Table
+
+| Type                    | Purpose                         | Example                        |
+| ----------------------- | ------------------------------- | ------------------------------ |
+| Process Control         | Manage processes                | `fork()`, `exec()`, `exit()`   |
+| File Management         | Handle files                    | `open()`, `read()`, `write()`  |
+| Device Management       | Access hardware devices         | `ioctl()`, `read()`            |
+| Information Maintenance | System or process info          | `getpid()`, `alarm()`          |
+| Communication (IPC)     | Data transfer between processes | `pipe()`, `shmget()`, `send()` |
+| Protection              | Permissions and access control  | `chmod()`, `setuid()`          |
+
+---
+
 - **Process Control:**
   - Create, terminate, or manage processes.
   - Handle debugging and resource allocation.
